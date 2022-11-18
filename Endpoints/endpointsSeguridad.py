@@ -1,3 +1,4 @@
+
 from flask import jsonify, request, Blueprint
 from Controladores.controlSeguridad import ControladorSeguridad
 
@@ -11,4 +12,4 @@ endpointSeguridad = Blueprint('endpointSeguridad',__name__)
 def login():
     data = request.get_json()
     response = controladorSeguridad.login(data)
-    return response
+    return jsonify(response)if not isinstance(response,tuple)else(jsonify(response[0]),response[1])
